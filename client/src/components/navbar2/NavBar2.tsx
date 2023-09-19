@@ -34,7 +34,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
     try {
       if (clientId) {
         const response = await axios.get(
-          `http://localhost:3001/purchases/${clientId}`
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
         );
         const purchases = response.data;
 
@@ -42,7 +42,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
           const purchaseIdToDelete = purchases[0]._id;
           console.log({ c: purchases[0] });
           await axios.delete(
-            `http://localhost:3001/purchases/delete/${purchaseIdToDelete}`
+            `https://industria-gallay-server.onrender.com/purchases/delete/${purchaseIdToDelete}`
           );
         }
       }
@@ -60,6 +60,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
       <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar2 navbar-expand-lg navbar-light">
+          <div className="navbar-logo-container">
             <Link
               className="navbar-logo"
               aria-current="page"
@@ -69,7 +70,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
               <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
-         
+         </div>
               <button
                 className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
                 onClick={toggleNav}
