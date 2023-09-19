@@ -60,6 +60,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
       <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar2 navbar-expand-lg navbar-light">
+          <div className="navbar-logo-container">
             <Link
               className="navbar-logo"
               aria-current="page"
@@ -69,7 +70,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
               <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
-         
+         </div>
               <button
                 className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
                 onClick={toggleNav}

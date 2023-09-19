@@ -164,20 +164,6 @@ const DashboardAdmin: React.FC = () => {
     }
   };
 
-  const fetchFilteredCompras = async () => {
-    try {
-      const response = await axios.get(
-        `https://industria-gallay-server.onrender.com/purchases/client/${searchQueryPurchases}`,
-        {
-          params: { search: searchQueryPurchases },
-        }
-      );
-      setCompras(response.data);
-    } catch (error) {
-      console.error("Error searching purchases:", error);
-    }
-  };
-
   const filteredClientesList = originalClientes.filter((cliente) =>
     cliente.firstName.toLowerCase().includes(searchQueryClientes.toLowerCase())
   );
