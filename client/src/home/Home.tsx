@@ -19,6 +19,8 @@ interface Product {
   stock: number;
   price: number;
 }
+// Define una variable para totalPages fuera del componente
+let totalPages = 0;
 
 let totalPages = 0;
 
@@ -31,8 +33,10 @@ const Home: React.FC = () => {
 
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
+
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage = 9;
+
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_isHoverEnabled, setIsHoverEnabled] = useState(true);
@@ -50,6 +54,7 @@ const Home: React.FC = () => {
   let lastMaxPrice = maxPrice;
   const navigate = useNavigate();
 
+
   const showAllProducts = () => {
     const filteredKnifeProducts = products.filter(
       (product) => product.categories === "knife"
@@ -65,6 +70,14 @@ const Home: React.FC = () => {
   useEffect(() => {
     totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   }, [filteredProducts]);
+
+
+  useEffect(() => {
+    // Calcula totalPages cuando filteredProducts cambia
+    totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  }, [filteredProducts]); // Ejecutar el efecto cuando filteredProducts cambie
+
+  // Filtrar los productos por categoría "knife" al cargar
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -87,6 +100,7 @@ const Home: React.FC = () => {
     fetchProducts();
   }, []);
 
+
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -96,6 +110,7 @@ const Home: React.FC = () => {
       setMaxPrice(undefined);
     }
   };
+
 
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
@@ -182,6 +197,19 @@ const Home: React.FC = () => {
       setFilteredProducts(filtered);
     }
   }, [searchTerm, products]);
+  
+  const showAllProducts = () => {
+    const filteredKnifeProducts = products.filter(
+      (product) => product.categories === "knife"
+    );
+
+    if (filteredKnifeProducts.length < (currentPage - 1) * productsPerPage) {
+      setCurrentPage(1);
+    }
+
+    setFilteredProducts(filteredKnifeProducts);
+  };
+
 
   const [animationsCompleted, setAnimationsCompleted] = useState(false);
   useEffect(() => {
@@ -299,6 +327,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     AOS.refreshHard();
   }, [filteredProducts]);
+
 
   return (
     <div>
