@@ -58,6 +58,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
       <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar2 navbar-expand-lg navbar-light">
+          <div className="navbar-logo-container">
             <Link
               className="navbar-logo"
               aria-current="page"
@@ -67,19 +68,20 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
               <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
-            <button
-              className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
-              onClick={toggleNav}
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded={isNavOpen ? "true" : "false"}
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
+         </div>
+              <button
+                className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
+                onClick={toggleNav}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded={isNavOpen ? "true" : "false"}
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+       
             <div
               className={`navbar-links-container ${isNavOpen ? "active" : ""}`}
             >
